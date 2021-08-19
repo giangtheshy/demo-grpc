@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: client-service
+#grpc:
+#  server:
+#    port: 9090
+server:
+  port: 8080
+grpc:
+  client:
+    client-service:
+      address: 'static://localhost:9091'
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      negotiationType: plaintext

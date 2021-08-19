@@ -1,0 +1,30 @@
+syntax = "proto3";
+option java_multiple_files = true;
+package com.giangtheshy.proto;
+
+message Todo {
+  int64 id=1;
+  string name=2;
+  string description=3;
+  string owner=4;
+  Status status=5;
+  enum Status {
+    DONE = 0;
+    NONE = 1;
+  }
+}
+message Params{
+  int32 page=1;
+  bool sort=2;
+  int64 id=3;
+}
+
+service TodoService{
+  rpc addOne(Todo) returns ( Todo);
+  rpc addMany(stream Todo) returns (stream Todo);
+  rpc getAll(Params) returns (stream Todo);
+  rpc getOne(Params) returns (Todo);
+  rpc removeOne(Params) returns (Todo);
+  rpc removeMany(stream Params) returns (stream Todo);
+  rpc makeDoneTodo(Params) returns (Todo);
+}
